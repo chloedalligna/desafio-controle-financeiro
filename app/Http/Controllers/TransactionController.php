@@ -59,7 +59,7 @@ class TransactionController extends Controller
 //        $transaction->value = $request->input('value);
 //        $transaction->category_id = $request->input('category_id);
 
-        return redirect()->route('transactions.index')->with('msg', 'Transação atualizado com sucesso.');
+        return redirect()->route('transactions.index')->with('msg', 'Transação atualizada com sucesso.');
     }
 
     public function destroy($id)
