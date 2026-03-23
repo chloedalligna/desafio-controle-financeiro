@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TypeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $types = Type::all();
+        $users = User::all();
 
-        return view('types.index')->with('categories', $types);
+        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -22,7 +22,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('types.create');
+        return view('users.create');
     }
 
     /**
@@ -30,9 +30,9 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        Type::create($request->all);
+        User::create($request->all);
 
-        return redirect()->route('types.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -40,9 +40,9 @@ class TypeController extends Controller
      */
     public function show(string $id)
     {
-        $type = Type::find($id);
+        $user = User::find($id);
 
-        return view('types.show')->with('type', $type);
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -50,13 +50,13 @@ class TypeController extends Controller
      */
     public function edit(string $id)
     {
-        $type = Type::find($id);
+        $user = User::find($id);
 
-        if ($type) {
-            return redirect()->route('types.index')->with('msg', 'Tipo não encontrado.');
+        if ($user) {
+            return redirect()->route('users.index')->with('msg', 'Usuário não encontrado.');
         }
 
-        return view('types.edit')->with('type', $type);
+        return view('users.edit')->with('user', $user);
     }
 
     /**
@@ -64,11 +64,11 @@ class TypeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $type = Type::find($id);
+        $user = User::find($id);
 
-        $type->update($request->all());
+        $user->update($request->all());
 
-        return redirect()->route('types.index')->with('msg', 'Tipo atualizado com sucesso.');
+        return redirect()->route('users.index')->with('msg', 'Usuário atualizado com sucesso.');
     }
 
     /**
@@ -76,10 +76,10 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
-        $type = Type::find($id);
+        $user = User::find($id);
 
-        $type->delete();
+        $user->delete();
 
-        return redirect()->route('types.index')->with('msg', 'Tipo deletado com sucesso.');
+        return redirect()->route('users.index')->with('msg', 'Usuário deletado com sucesso.');
     }
 }

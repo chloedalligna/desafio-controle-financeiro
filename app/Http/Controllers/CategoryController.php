@@ -11,30 +11,26 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('transactions.categories.index')->with('categories', $categories);
+        return view('categories.index')->with('categories', $categories);
     }
 
     public function create()
     {
-        return view('transactions.categories.create');
+        return view('categories.create');
     }
 
     public function store(Request $request)
     {
-//        $transaction = new Transaction();
-//        $transaction = $request->input->all();
-//        $transaction->save();
-//        redirect(view('transactions.index', ['transactions' => Transaction::all()]));
-
         Category::create($request->all);
-        return redirect()->route('transactions.categories.index');
+
+        return redirect()->route('categories.index');
     }
 
     public function show($id)
     {
         $category = Category::find($id);
 
-        return view('transactions.categories.show')->with('category', $category);
+        return view('categories.show')->with('category', $category);
     }
 
     public function edit($id)
@@ -42,10 +38,10 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if ($category) {
-            return redirect()->route('transactions.categoriescategories.index')->with('msg', 'Categoria não encontrada.');
+            return redirect()->route('categories.index')->with('msg', 'Categoria não encontrada.');
         }
 
-        return view('transactions.categories.edit')->with('category', $category);
+        return view('categories.edit')->with('category', $category);
     }
 
     public function update(Request $request, $id)
@@ -54,12 +50,7 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-//        $transaction->name = $request->input('name);
-//        $transaction->description = $request->input('description);
-//        $transaction->value = $request->input('value);
-//        $transaction->category_id = $request->input('category_id);
-
-        return redirect()->route('transactions.categories.index')->with('msg', 'Categoria atualizada com sucesso.');
+        return redirect()->route('categories.index')->with('msg', 'Categoria atualizada com sucesso.');
     }
 
     public function destroy($id)
@@ -68,6 +59,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('transactions.categories.index')->with('msg', 'Categoria deletada com sucesso.');
+        return redirect()->route('categories.index')->with('msg', 'Categoria deletada com sucesso.');
     }
 }
