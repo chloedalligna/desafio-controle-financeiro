@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->decimal('value', 10, 2);
-//            $table->date('date_entry');
             $table->foreignId('category_id')->constrained('categories');
+            $table->decimal('value', 10, 2);
+            $table->text('description');
             $table->timestamps();
         });
     }
