@@ -13,7 +13,9 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::all();
 
-        return view('transactions.index')->with('transactions', $transactions);
+        return view('transactions.index', [
+            'transactions' => $transactions
+        ]);
     }
 
     public function create()
@@ -27,38 +29,44 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request);
 //        $transaction = new Transaction();
-//        $transaction = $request->input->all();
 //        $transaction->save();
-//        redirect(view('transactions.index', ['transactions' => Transaction::all()]));
 
-        Transaction::create($request->all);
-        return redirect()->route('transactions.index');
+        Transaction::create($request->except('_token'));
+
+        return to_route('transactions.index');
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $transaction = Transaction::find($id);
 
-        return view('transactions.show')->with('transaction', $transaction);
+        return view('transactions.show', [
+            'transaction' => $transaction
+        ]);
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $transaction = Transaction::find($id);
+        $categories = Category::all();
 
-        if ($transaction) {
-            return redirect()->route('transactions.index')->with('msg', 'Transação não encontrada.');
+        if (!$transaction) {
+            return to_route('transactions.index')->with('msg', 'Transação não encontrada.');
         }
 
-        return view('transactions.edit')->with('transaction', $transaction);
+        return view('transactions.edit', [
+            'transaction' => $transaction,
+            'categories' => $categories
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $transaction = Transaction::find($id);
 
-        $transaction->update($request->all());
+        $transaction->update($request->except('_token'));
 
 //        $transaction->name = $request->input('name);
 //        $transaction->description = $request->input('description);
@@ -68,12 +76,12 @@ class TransactionController extends Controller
         return redirect()->route('transactions.index')->with('msg', 'Transação atualizada com sucesso.');
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $transaction = Transaction::find($id);
 
         $transaction->delete();
 
-        return redirect()->route('transactions.index')->with('msg', 'Transação deletada com sucesso.');
+        return to_route('transactions.index')->with('msg', 'Transação deletada com sucesso.');
     }
 }

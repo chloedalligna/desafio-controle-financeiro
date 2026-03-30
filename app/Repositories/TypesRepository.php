@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Type;
 
-class TypesRepositories
+class TypesRepository
 {
 
     public function __construct()

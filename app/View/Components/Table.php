@@ -4,16 +4,26 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class Table extends Component
 {
+    public Collection $collection;
+    public array $keys;
+    public array $backgroundColor = [ 1 => 'bg-red-500', 2 => 'bg-green-500' ];
+    public string $edit;
+    public string $action;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(Collection $collection, array $keys, string $edit, string $action)
     {
-        //
+        $this->collection = $collection;
+        $this->keys = $keys;
+        $this->edit = $edit;
+        $this->action = $action;
     }
 
     /**

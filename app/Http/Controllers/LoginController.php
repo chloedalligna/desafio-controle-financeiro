@@ -18,10 +18,10 @@ class LoginController extends Controller
         $request->authenticate();
     }
 
-    public function destroy()
+    public function destroy(Request $request)
     {
         Auth::logout();
 
-        return to_route("login", 'get');
+        return to_route('login');
     }
 }

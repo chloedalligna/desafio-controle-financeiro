@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <form action="{{ $action }}" method="post" class="max-w-sm mx-auto">
+    <form action="{{ $action }}" method="POST" class="max-w-sm mx-auto">
         @csrf
 
         @if($update)
@@ -30,17 +30,17 @@
                            id="name"
                            type="text"
                            required
-                           @isset($name)value="{{ $name }}"@endisset>
+                           value={{ $name }}>
                 </div>
             </div>
 
             <div class="sm:col-span-3">
                 <label class="block text-sm/6 font-medium text-white"
-                       for="category">
+                       for="category_id">
                     Categoria da transação
                 </label>
                 <div class="mt-2 grid grid-cols-1">
-                    <select id="category" name="category" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-8 pl-3 text-base text-white outline-1 -outline-offset-1 outline-gray-500 *:bg-gray-800 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-600 sm:text-sm/6">
+                    <select id="category_id" name="category_id" class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pr-8 pl-3 text-base text-white outline-1 -outline-offset-1 outline-gray-500 *:bg-gray-800 focus:outline-2 focus:-outline-offset-2 focus:outline-teal-600 sm:text-sm/6">
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}"
                             @if($update)
@@ -62,11 +62,9 @@
                     <input class="block min-w-0 grow bg-gray-200 dark:bg-gray-800 rounded-md py-1.5 pr-3 pl-3 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
                            name="value"
                            id="value"
-                           type="number"
-                           min="0.01"
-                           step="0.01"
+                           type="text"
                            required
-                           @isset($value)value="{{ $value }}"@endisset>
+                           value="{{ $value }}">
                 </div>
             </div>
 
@@ -81,7 +79,7 @@
                            id="description"
                            type="text"
                            required
-                           @isset($description)value="{{ $description }}"@endisset>
+                           value="{{ $description }}">
                 </div>
             </div>
 

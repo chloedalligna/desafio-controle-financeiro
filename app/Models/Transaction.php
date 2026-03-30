@@ -11,7 +11,7 @@ class Transaction extends Model
 {
 
     use SoftDeletes;
-    protected $fillable = ['name', 'description', 'value', 'category_id'];
+    protected $fillable = ['name', 'category_id', 'value', 'description'];
 
     public function user(): BelongsTo
     {
