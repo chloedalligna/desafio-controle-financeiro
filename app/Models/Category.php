@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
 
+    use SoftDeletes;
+
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);

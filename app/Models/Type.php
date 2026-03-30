@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Type extends Model
 {
+
+    use SoftDeletes;
+
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);

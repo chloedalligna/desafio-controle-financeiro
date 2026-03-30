@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
+
+    use SoftDeletes;
     protected $fillable = ['name', 'description', 'value', 'category_id'];
 
     public function user(): BelongsTo

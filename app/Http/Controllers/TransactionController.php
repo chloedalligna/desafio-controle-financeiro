@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Transaction;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -16,7 +18,11 @@ class TransactionController extends Controller
 
     public function create()
     {
-        return view('transactions.create');
+        $categories = Category::all();
+
+        return view('transactions.create', [
+            'categories' => $categories
+        ]);
     }
 
     public function store(Request $request)

@@ -1,18 +1,5 @@
-<x-layout>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    Número
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    2
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<x-layout title="Suas transações">
+
+{{--    <x-table :atributes="{{  }}"/>--}}
+
 </x-layout>
