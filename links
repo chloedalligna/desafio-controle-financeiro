@@ -1,15 +1,24 @@
+Tailwind e CSS:
+https://tailwindcss.com/docs/styling-with-utility-classes
 https://tailwindcss.com/plus/ui-blocks/application-ui/forms/sign-in-forms
 https://www.hyperui.dev/components/marketing/headers/
 https://tailwindcss.com/plus/ui-blocks/marketing/elements/headers
 https://tailwindcss.com/plus/ui-blocks/application-ui/forms/form-layouts
 https://flowbite.com/docs/forms/radio/
 https://flowbite.com/docs/forms/input-field/
+https://www.material-tailwind.com/docs/html/table
+https://flowbite.com/blocks/e-commerce/product-categories/
+https://tailwindcss.com/docs/grid-column
+
+Models, database e controllers:
 https://medium.com/@emad-mohamed/softdelete-on-laravel-a8545ec87253
 https://laravel.com/docs/13.x/validation
+https://laracasts.com/discuss/channels/laravel/how-to-modify-request-data-before-saving
+
+Views (inputs, components, etc.):
 https://stackoverflow.com/questions/45268471/getting-selected-option-on-edit-form-in-laravel
 https://stackoverflow.com/questions/63407420/imask-js-set-currency-symbol-to-the-and-of-number-by-appending-changeable-double
 https://imask.js.org/guide.html
-https://www.material-tailwind.com/docs/html/table
 https://laraveldaily.com/tip/strmask-method
 https://laravel-news.com/laravel-number-utility-class
 https://stackoverflow.com/questions/40038521/change-the-date-format-in-laravel-view-page
@@ -17,7 +26,7 @@ https://fontawesome.com/
 https://web.dev/learn/css/anchor-positioning?hl=pt-br
 https://stackoverflow.com/questions/38461677/what-is-the-best-practice-to-show-old-value-when-editing-a-form-in-laravel
 https://laracasts.com/discuss/channels/livewire/imask-with-livewire-and-alpine
-https://laracasts.com/discuss/channels/laravel/how-to-modify-request-data-before-saving
-https://flowbite.com/blocks/e-commerce/product-categories/
-https://www.itsolutionstuff.com/post/laravel-9-dependent-dropdown-example-tutorialexample.html
+https://www.itsolutionstuff.com/post/laravel-9-dependent-dropdown-example-tutorialexample.html (config de model também)
+
+Filtros:
 https://dev.to/stefant123/create-filters-in-laravel-with-oop-best-practices-pm9

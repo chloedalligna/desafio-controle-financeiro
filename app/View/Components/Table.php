@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
-    public Collection $collection;
+    public Collection|array $collection;
     public array $keys;
     public array $textColor = [ 1 => 'text-red-500', 2 => 'text-green-500' ];
     public string $edit;
@@ -18,7 +18,7 @@ class Table extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(Collection $collection, array $keys, string $edit, string $action)
+    public function __construct(Collection|array $collection, array $keys, string $edit, string $action)
     {
         $this->collection = $collection;
         $this->keys = $keys;

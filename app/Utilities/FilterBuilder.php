@@ -21,7 +21,7 @@ class FilterBuilder
             $normailizedName = ucfirst($name);
             $class = $this->namespace . "\\{$normailizedName}";
 
-            if (! class_exists($class)) {
+            if (!class_exists($class)) {
                 continue;
             }
 

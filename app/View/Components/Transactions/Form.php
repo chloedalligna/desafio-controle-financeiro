@@ -13,14 +13,14 @@ class Form extends Component
 
     public string $action;
     public bool $update;
-    public Collection $types;
-    public Collection $categories;
+    public Collection|array $types;
+    public Collection|array $categories;
     public $transaction;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $action, bool $update, Collection $types, Collection $categories, $transaction)
+    public function __construct(string $action, bool $update, Collection|array $types, Collection|array $categories, $transaction)
     {
         $this->action = $action;
         $this->update = $update;

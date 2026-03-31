@@ -16,21 +16,14 @@
                     <ul class="flex items-center gap-6 text-sm">
                         <li>
                             <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('transactions.create') }}">
-                                Criar nova transação
+                                Adicionar transação
                             </a>
                         </li>
-                        @if(session('admin'))
-                            <li>
-                                <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('categories.create') }}">
-                                    Criar nova categoria
-                                </a>
-                            </li>
-                            <li>
-                                <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('types.create') }}">
-                                    Criar novo tipo
-                                </a>
-                            </li>
-                        @endif
+                        <li>
+                            <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('categories.create') }}">
+                                Adicionar categoria
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -60,12 +53,12 @@
                     <div class="relative">
                         <button style="anchor-name: --my-anchor;" id="anchor" popovertarget="desktop-menu-product" type="button" class="flex items-center gap-x-1 text-sm/6 font-semibold text-white">
                             <span class="mr-2">
-                                <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 flex-none text-gray-500">
+                                <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 flex-none text-gray-300">
                                     <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
                                 </svg>
                             </span>
                             <span class="sr-only">Ativar menu suspenso</span>
-                            <img class="-mr-6 size-10 object-cover overflow-hidden rounded-full border border-gray-300 shadow-inner" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512" class="size-6 text-gray-300"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M224 248a120 120 0 1 0 0-240 120 120 0 1 0 0 240zm-29.7 56C95.8 304 16 383.8 16 482.3 16 498.7 29.3 512 45.7 512l356.6 0c16.4 0 29.7-13.3 29.7-29.7 0-98.5-79.8-178.3-178.3-178.3l-59.4 0z"/></svg>
                         </button>
 
                         <el-popover style="position: absolute; position-anchor: --my-anchor; position-area: bottom;" id="desktop-menu-product" popover class="max-w-md mr-4 mt-4 overflow-hidden rounded-3xl bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete backdrop:bg-transparent open:block data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in">

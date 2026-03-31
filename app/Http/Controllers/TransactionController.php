@@ -19,7 +19,7 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $transactions = Transaction::orderBy('date', 'asc')->all();
+        $transactions = Transaction::orderBy('date', 'asc')->get()->all();
 
         $total = $this->transactionsRepository->totalSum($transactions);
         $incomes = $this->transactionsRepository->incomesSum($transactions);
@@ -37,6 +37,7 @@ class TransactionController extends Controller
     public function create()
     {
         $types = Type::all();
+        dd($types);
         $categories = Category::all();
 
         return view('transactions.create', [

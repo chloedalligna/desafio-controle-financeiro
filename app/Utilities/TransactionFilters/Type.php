@@ -2,13 +2,14 @@
 
 namespace App\Utilities\TransactionFilters;
 
+use App\Utilities\FilterBuilder;
 use App\Utilities\FilterContract;
 use App\Utilities\QueryFilter;
 
-class Period extends QueryFilter implements FilterContract
+class Type extends QueryFilter implements FilterContract
 {
     public function handle($value): void
     {
-        $this->query->whereYear('date', $value[0])->whereMonth('date', $value[1]);
+        $this->query->whereYear('type_id', $value->category->type_id);
     }
 }
