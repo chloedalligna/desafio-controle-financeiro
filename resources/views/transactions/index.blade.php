@@ -1,8 +1,14 @@
 <x-layout title="Suas transações">
 
+    <x-transactions.amounts :total="$total"
+                            :incomes="$incomes"
+                            :expenses="$expenses"
+    />
+
     <x-table :collection="$transactions"
-             :keys="['Nome', 'Categoria', 'Valor', 'Descrição', 'Data de criação', 'Data da última atualização']"
+             :keys="['Tipo', 'Valor', 'Descrição', 'Categoria', 'Data']"
              edit="transactions.edit"
-             action="transactions.destroy" />
+             action="transactions.destroy"
+    />
 
 </x-layout>

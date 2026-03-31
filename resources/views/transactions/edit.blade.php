@@ -3,11 +3,9 @@
     <x-transactions.form
         :action="route('transactions.update', $transaction->id)"
         :update="true"
-        :name="old('name')"
+        :types="$types"
         :categories="$categories"
         :transaction="$transaction"
-        :value="old('value')"
-        :description="old('description')"
     />
 
 </x-layout>

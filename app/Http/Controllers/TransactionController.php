@@ -2,36 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionsFormRequest;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\Type;
+use App\Repositories\TransactionsRepository;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    private TransactionsRepository $transactionsRepository;
+    public function __construct(TransactionsRepository $transactionsRepository)
+    {
+       $this->transactionsRepository = $transactionsRepository;
+    }
+
     public function index()
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::orderBy('date', 'asc')->all();
+
+        $total = $this->transactionsRepository->totalSum($transactions);
+        $incomes = $this->transactionsRepository->incomesSum($transactions);
+        $expenses = $this->transactionsRepository->expensesSum($transactions);
+
 
         return view('transactions.index', [
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'total' => $total,
+            'incomes' => $incomes,
+            'expenses' => $expenses
         ]);
     }
 
     public function create()
     {
+        $types = Type::all();
         $categories = Category::all();
 
         return view('transactions.create', [
+            'types' => $types,
             'categories' => $categories
         ]);
     }
 
-    public function store(Request $request)
+    public function store(TransactionsFormRequest $request)
     {
-//        dd($request);
-//        $transaction = new Transaction();
-//        $transaction->save();
+        $cleanValue = self::cleanMoneyValue($request->input('value'));
+        $request->merge(['value' => $cleanValue]);
 
         Transaction::create($request->except('_token'));
 
@@ -62,18 +79,16 @@ class TransactionController extends Controller
         ]);
     }
 
-    public function update(Request $request, int $id)
+    public function update(TransactionsFormRequest $request, int $id)
     {
         $transaction = Transaction::find($id);
 
+        $cleanValue = self::cleanMoneyValue($request->input('value'));
+        $request->merge(['value' => $cleanValue]);
+
         $transaction->update($request->except('_token'));
 
-//        $transaction->name = $request->input('name);
-//        $transaction->description = $request->input('description);
-//        $transaction->value = $request->input('value);
-//        $transaction->category_id = $request->input('category_id);
-
-        return redirect()->route('transactions.index')->with('msg', 'Transação atualizada com sucesso.');
+        return to_route('transactions.index')->with('msg', 'Transação atualizada com sucesso.');
     }
 
     public function destroy(int $id)
@@ -84,4 +99,13 @@ class TransactionController extends Controller
 
         return to_route('transactions.index')->with('msg', 'Transação deletada com sucesso.');
     }
+
+    public function cleanMoneyValue(string $value): float
+    {
+        $firstValue = str_replace("R$ ", "", $value);
+        $secondValue = str_replace(".", "", $firstValue);
+        $cleanValue = str_replace(",", ".", $secondValue);
+        return (float) $cleanValue;
+    }
+
 }

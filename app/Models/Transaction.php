@@ -11,7 +11,7 @@ class Transaction extends Model
 {
 
     use SoftDeletes;
-    protected $fillable = ['name', 'category_id', 'value', 'description'];
+    protected $fillable = ['value', 'description', 'category_id', 'date', 'user_id'];
 
     public function user(): BelongsTo
     {
@@ -21,6 +21,14 @@ class Transaction extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function scopeFilterBy($query, $filters)
+    {
+        $namespace = 'App\Utilities\TransactionFilters';
+        $filter = new FilterBuilder($query, $filters, $namespace);
+
+        return $filter->apply();
     }
 
 }

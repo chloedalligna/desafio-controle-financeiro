@@ -11,7 +11,7 @@ class Table extends Component
 {
     public Collection $collection;
     public array $keys;
-    public array $backgroundColor = [ 1 => 'bg-red-500', 2 => 'bg-green-500' ];
+    public array $textColor = [ 1 => 'text-red-500', 2 => 'text-green-500' ];
     public string $edit;
     public string $action;
 

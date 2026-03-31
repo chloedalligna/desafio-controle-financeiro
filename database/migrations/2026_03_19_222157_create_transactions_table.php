@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('category_id')->constrained('categories');
             $table->decimal('value', 10, 2);
             $table->text('description');
+            $table->foreignId('category_id')->constrained('categories');
+            $table->date('date');
+            $table->foreignId('user_id');
             $table->softDeletes();
             $table->timestamps();
         });

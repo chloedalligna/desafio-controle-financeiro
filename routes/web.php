@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login/store', [LoginController::class, 'store'])->name('signin');
-    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
     Route::get('/register', [UserController::class, 'create'])->name('signup');
     Route::post('/register', [UserController::class, 'store'])->name('register');
@@ -22,8 +21,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/transactions', TransactionController::class);
-
     Route::resource('/categories', CategoryController::class);
 
-    Route::resource('/types', TypeController::class);
+    Route::post('api/fetch-categories', [TypeController::class, 'fetchCategories']);
+
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });

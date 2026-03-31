@@ -61,4 +61,5 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')->with('msg', 'Categoria deletada com sucesso.');
     }
+
 }

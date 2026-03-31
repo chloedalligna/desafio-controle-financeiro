@@ -2,84 +2,94 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionsFormRequest;
+use App\Models\Category;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+    public function fetchCategories(TransactionsFormRequest $request)
+    {
+        $data['categories'] = Category::where("type_id", $request->type_id)->get(["id", "name"]);
+
+        return response()->json($data);
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $types = Type::all();
-
-        return view('types.index')->with('categories', $types);
-    }
+//    public function index()
+//    {
+//        $types = Type::all();
+//
+//        return view('types.index')->with('types', $types);
+//    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('types.create');
-    }
+//    public function create()
+//    {
+//        return view('types.create');
+//    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        Type::create($request->all);
-
-        return redirect()->route('types.index');
-    }
+//    public function store(Request $request)
+//    {
+//        Type::create($request->all);
+//
+//        return redirect()->route('types.index');
+//    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        $type = Type::find($id);
-
-        return view('types.show')->with('type', $type);
-    }
+//    public function show(string $id)
+//    {
+//        $type = Type::find($id);
+//
+//        return view('types.show')->with('type', $type);
+//    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $type = Type::find($id);
-
-        if ($type) {
-            return redirect()->route('types.index')->with('msg', 'Tipo não encontrado.');
-        }
-
-        return view('types.edit')->with('type', $type);
-    }
+//    public function edit(string $id)
+//    {
+//        $type = Type::find($id);
+//
+//        if ($type) {
+//            return redirect()->route('types.index')->with('msg', 'Tipo não encontrado.');
+//        }
+//
+//        return view('types.edit')->with('type', $type);
+//    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $type = Type::find($id);
-
-        $type->update($request->all());
-
-        return redirect()->route('types.index')->with('msg', 'Tipo atualizado com sucesso.');
-    }
+//    public function update(Request $request, string $id)
+//    {
+//        $type = Type::find($id);
+//
+//        $type->update($request->all());
+//
+//        return redirect()->route('types.index')->with('msg', 'Tipo atualizado com sucesso.');
+//    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        $type = Type::find($id);
+//    public function destroy(string $id)
+//    {
+//        $type = Type::find($id);
+//
+//        $type->delete();
+//
+//        return redirect()->route('types.index')->with('msg', 'Tipo deletado com sucesso.');
+//    }
 
-        $type->delete();
-
-        return redirect()->route('types.index')->with('msg', 'Tipo deletado com sucesso.');
-    }
 }

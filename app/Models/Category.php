@@ -11,6 +11,7 @@ class Category extends Model
 {
 
     use SoftDeletes;
+    protected $fillable = ['name', 'type_id', 'user_id'];
 
     public function transactions(): HasMany
     {
