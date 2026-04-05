@@ -11,6 +11,16 @@
 
 <x-header/>
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <h1 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">{{ $title }}</h1>
 
 {{ $slot }}

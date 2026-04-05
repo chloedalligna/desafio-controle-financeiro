@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
-    public function fetchCategories(TransactionsFormRequest $request)
-    {
-        $data['categories'] = Category::where("type_id", $request->type_id)->get(["id", "name"]);
-
-        return response()->json($data);
-    }
 
     /**
      * Display a listing of the resource.

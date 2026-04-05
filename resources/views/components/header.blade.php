@@ -15,13 +15,13 @@
                 <nav aria-label="Global">
                     <ul class="flex items-center gap-6 text-sm">
                         <li>
-                            <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('transactions.create') }}">
+                            <a href="{{ route('transactions.create') }}" class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500">
                                 Adicionar transação
                             </a>
                         </li>
                         <li>
-                            <a class="text-gray-500 transition font-semibold hover:text-gray-500/75" href="{{ route('categories.create') }}">
-                                Adicionar categoria
+                            <a href="{{ route('categories.index') }}" class="text-gray-300 transition font-semibold hover:text-gray-500/75" >
+                                Categorias
                             </a>
                         </li>
                     </ul>
@@ -39,7 +39,7 @@
                             </a>
                         @else
                             <div class="hidden sm:flex">
-                                <a class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-semibold text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
+                                <a class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 dark:text-white dark:hover:text-white/75"
                                    href="{{ route('signup') }}">
                                     Criar conta
                                 </a>

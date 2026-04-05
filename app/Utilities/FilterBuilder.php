@@ -18,8 +18,8 @@ class FilterBuilder
     public function apply()
     {
         foreach ($this->filters as $name => $value) {
-            $normailizedName = ucfirst($name);
-            $class = $this->namespace . "\\{$normailizedName}";
+            $capitalFirstLetter = ucfirst($name);
+            $class = $this->namespace . "\\{$capitalFirstLetter}";
 
             if (!class_exists($class)) {
                 continue;

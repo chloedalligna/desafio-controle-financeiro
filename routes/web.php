@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/transactions', TransactionController::class);
     Route::resource('/categories', CategoryController::class);
 
-    Route::post('api/fetch-categories', [TypeController::class, 'fetchCategories']);
+    Route::get('/categories/{id}', [TypeController::class, 'fetchCategories']);
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });

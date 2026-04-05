@@ -14,6 +14,7 @@ Models, database e controllers:
 https://medium.com/@emad-mohamed/softdelete-on-laravel-a8545ec87253
 https://laravel.com/docs/13.x/validation
 https://laracasts.com/discuss/channels/laravel/how-to-modify-request-data-before-saving
+https://laraveldaily.com/post/laravel-factories-seeders
 
 Views (inputs, components, etc.):
 https://stackoverflow.com/questions/45268471/getting-selected-option-on-edit-form-in-laravel
@@ -26,7 +27,10 @@ https://fontawesome.com/
 https://web.dev/learn/css/anchor-positioning?hl=pt-br
 https://stackoverflow.com/questions/38461677/what-is-the-best-practice-to-show-old-value-when-editing-a-form-in-laravel
 https://laracasts.com/discuss/channels/livewire/imask-with-livewire-and-alpine
-https://www.itsolutionstuff.com/post/laravel-9-dependent-dropdown-example-tutorialexample.html (config de model também)
+https://stackoverflow.com/questions/8605516/set-the-select-option-as-blank-as-default-in-html-select-element
+https://www.w3schools.com/howto/howto_js_toggle_password.asp
+https://technology.blog.gov.uk/2021/04/19/simple-things-are-complicated-making-a-show-password-option/
 
 Filtros:
 https://dev.to/stefant123/create-filters-in-laravel-with-oop-best-practices-pm9
+https://stackoverflow.com/questions/30231862/laravel-eloquent-has-with-wherehas-what-do-they-mean

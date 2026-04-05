@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,9 +31,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
         $userData = $request->except(['_token']);
+        validator($userData);
         $userData['password'] = Hash::make($userData['password']);
 
         $user = User::create($userData);

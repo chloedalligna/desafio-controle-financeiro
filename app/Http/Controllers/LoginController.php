@@ -17,15 +17,7 @@ class LoginController extends Controller
 
     public function store(LoginRequest $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
-            RateLimiter::hit($request->throttleKey());
-
-            throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
-        }
-
-        RateLimiter::clear($request->throttleKey());
+        $request->authenticate();
 
         return to_route('transactions.index');
     }

@@ -11,7 +11,7 @@
             Clique no botão <button class=""> "Adicionar transação" </button> e comece a administrar suas finanças!
         </h1
     @else
-        <x-table :collection="$transactions"
+        <x-transactions.table :collection="$transactions"
                      :keys="['Tipo', 'Valor', 'Descrição', 'Categoria', 'Data']"
                      edit="transactions.edit"
                      action="transactions.destroy"

@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        return view('categories.show')->with('category', $category);
+        return view('categories.show')->with('categories', $category);
     }
 
     public function edit($id)
@@ -41,7 +41,7 @@ class CategoryController extends Controller
             return redirect()->route('categories.index')->with('msg', 'Categoria não encontrada.');
         }
 
-        return view('categories.edit')->with('category', $category);
+        return view('categories.edit')->with('categories', $category);
     }
 
     public function update(Request $request, $id)

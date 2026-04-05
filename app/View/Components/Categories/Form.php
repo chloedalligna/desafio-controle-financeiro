@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Login;
+namespace App\View\Components\Categories;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.login.form');
+        return view('components.category.form');
     }
 }

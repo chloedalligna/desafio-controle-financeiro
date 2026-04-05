@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use \Illuminate\Validation\Rules\Password;
 
 class UserFormRequest extends FormRequest
 {
@@ -23,9 +24,29 @@ class UserFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'min:3'],
-            'password' => ['required', 'min:8']
+            'username' => [
+                'required',
+                'alpha_dash:ascii',
+                'min:3',
+                'max:20',
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                'string',
+                Password::min(8)
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised(),
+            ]
         ];
+
     }
 
     public function messages()

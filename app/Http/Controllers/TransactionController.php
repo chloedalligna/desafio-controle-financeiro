@@ -25,7 +25,6 @@ class TransactionController extends Controller
         $incomes = $this->transactionsRepository->incomesSum($transactions);
         $expenses = $this->transactionsRepository->expensesSum($transactions);
 
-
         return view('transactions.index', [
             'transactions' => $transactions,
             'total' => $total,
@@ -37,7 +36,6 @@ class TransactionController extends Controller
     public function create()
     {
         $types = Type::all();
-        dd($types);
         $categories = Category::all();
 
         return view('transactions.create', [
@@ -50,6 +48,8 @@ class TransactionController extends Controller
     {
         $cleanValue = self::cleanMoneyValue($request->input('value'));
         $request->merge(['value' => $cleanValue]);
+//        $request->merge(['user_id' => session('user_id')]);
+//        dd($request);
 
         Transaction::create($request->except('_token'));
 
