@@ -141,7 +141,7 @@
 
     let submitPassaword = document.getElementById('signup-submit-button');
 
-    submitPassaword.addEventListener('hover', e => {
+    submitPassaword.addEventListener('click', e => {
 
         let pwd = document.getElementById("password");
 

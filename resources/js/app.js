@@ -1,5 +1,4 @@
 import './bootstrap';
-
 import IMask from 'imask';
 
 const valueInput = document.getElementById('value');

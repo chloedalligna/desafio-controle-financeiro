@@ -2,33 +2,51 @@
 
 namespace App\Repositories;
 
+use App\Models\Transaction;
+
 class TransactionsRepository
 {
-    public function incomesSum($transactions)
+    public function incomesSum()
     {
-        $incomesSum = 0.00;
-        foreach ($transactions as $transaction) {
-            $incomesSum += $transaction->value
-                ->where($transaction->category->type_id === 2);
-        }
+        $transactions = Transaction::whereHas('category', function ($q) {
+            $q->where('type_id', 2);
+        });
 
-        return $incomesSum;
+        return $transactions->sum('value');
+
     }
 
-    public function expensesSum($transactions)
+    public function expensesSum()
     {
-        $expensesSum = 0.00;
-        foreach ($transactions as $transaction) {
-            $expensesSum += $transaction->value
-                ->where($transaction->category->type_id === 1);
-        }
-
-        return $expensesSum;
+        return Transaction::whereHas('category', function ($q) {
+            $q->where('type_id', 1);
+        })->sum('value');
     }
 
-    public function totalSum($transactions)
+    public function totalSum()
     {
-        return self::incomesSum($transactions) - self::expensesSum($transactions);
+        return self::incomesSum() - self::expensesSum();
+    }
+
+    public function rangeTime()
+    {
+        $transactions = Transaction::all();
+
+        $dates = $transactions->map->only(['date']);
+
+        $explodedDates = [];
+
+        foreach ($dates as $oneDate) {
+            $explodedDates[] = explode("-", $oneDate['date']);
+        }
+
+        return $explodedDates;
+
+    }
+
+    public function transactionsByCategory()
+    {
+
     }
 
 }

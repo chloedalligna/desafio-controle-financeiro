@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Utilities\TransactionFilters\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TypeSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class TypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            Type::create($type);
+            DB::table('types')->insert($type);
         }
     }
 }

@@ -118,6 +118,7 @@
 
 </div>
 
+<script src="/simple-mask-money.umd.js"></script>
 <script>
 
 let typeSelect = document.getElementById('type_id');// let typeOptions = typeDropdown.options;
@@ -142,7 +143,5 @@ typeSelect.addEventListener('change', (event) => {
         }
     }
 })
-
-// daySelect.options[daySelect.options.length] = new Option('Text 1', 'Value1');
 
 </script>

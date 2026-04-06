@@ -19,13 +19,20 @@ class TransactionController extends Controller
 
     public function index()
     {
+        $dates = $this->transactionsRepository->rangeTime();
+        $types = Type::all();
+        $categories = Category::all();
+
+        $total = $this->transactionsRepository->totalSum();
+        $incomes = $this->transactionsRepository->incomesSum();
+        $expenses = $this->transactionsRepository->expensesSum();
+
         $transactions = Transaction::orderBy('date', 'asc')->get()->all();
 
-        $total = $this->transactionsRepository->totalSum($transactions);
-        $incomes = $this->transactionsRepository->incomesSum($transactions);
-        $expenses = $this->transactionsRepository->expensesSum($transactions);
-
         return view('transactions.index', [
+            'dates' => $dates,
+            'types' => $types,
+            'categories' => $categories,
             'transactions' => $transactions,
             'total' => $total,
             'incomes' => $incomes,
@@ -48,26 +55,26 @@ class TransactionController extends Controller
     {
         $cleanValue = self::cleanMoneyValue($request->input('value'));
         $request->merge(['value' => $cleanValue]);
-//        $request->merge(['user_id' => session('user_id')]);
-//        dd($request);
+        $request->merge(['user_id' => session('user_id')]);
 
         Transaction::create($request->except('_token'));
 
         return to_route('transactions.index');
     }
 
-    public function show(int $id)
-    {
-        $transaction = Transaction::find($id);
-
-        return view('transactions.show', [
-            'transaction' => $transaction
-        ]);
-    }
+//    public function show(int $id)
+//    {
+//        $transaction = Transaction::find($id);
+//
+//        return view('transactions.show', [
+//            'transaction' => $transaction
+//        ]);
+//    }
 
     public function edit(int $id)
     {
         $transaction = Transaction::find($id);
+        $types = Type::all();
         $categories = Category::all();
 
         if (!$transaction) {
@@ -76,6 +83,7 @@ class TransactionController extends Controller
 
         return view('transactions.edit', [
             'transaction' => $transaction,
+            'types' => $types,
             'categories' => $categories
         ]);
     }

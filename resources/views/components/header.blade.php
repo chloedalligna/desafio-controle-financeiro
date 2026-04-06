@@ -14,16 +14,7 @@
             <div class="hidden md:block">
                 <nav aria-label="Global">
                     <ul class="flex items-center gap-6 text-sm">
-                        <li>
-                            <a href="{{ route('transactions.create') }}" class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500">
-                                Adicionar transação
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('categories.index') }}" class="text-gray-300 transition font-semibold hover:text-gray-500/75" >
-                                Categorias
-                            </a>
-                        </li>
+                        <x-navbar/>
                     </ul>
                 </nav>
             </div>
@@ -73,7 +64,7 @@
                                 <div class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm/6">
                                     <div class="flex-auto">
                                         <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
-                                            Assinatura Premium
+                                            Plano Premium
                                         </a>
                                     </div>
                                 </div>

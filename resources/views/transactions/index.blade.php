@@ -1,5 +1,10 @@
 <x-layout title="Suas transações">
 
+    <x-transactions.filters :dates="$dates"
+                            :types="$types"
+                            :categories="$categories"
+    />
+
     <x-transactions.amounts :total="$total"
                             :incomes="$incomes"
                             :expenses="$expenses"

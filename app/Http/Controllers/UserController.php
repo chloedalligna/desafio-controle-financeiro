@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserFormRequest;
 use App\Models\User;
+use App\Repositories\UsersRepository;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private UsersRepository $usersRepository;
+    public function __construct(UsersRepository $usersRepository)
+    {
+        $this->usersRepository = $usersRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -34,11 +42,13 @@ class UserController extends Controller
     public function store(UserFormRequest $request)
     {
         $userData = $request->except(['_token']);
-        validator($userData);
         $userData['password'] = Hash::make($userData['password']);
-
         $user = User::create($userData);
+
+        $this->usersRepository->userIdOnSession($request);
+
         Auth::login($user);
+        event(new Registered($user));
 
         return to_route('transactions.index');
     }
