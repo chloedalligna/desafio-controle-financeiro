@@ -32,4 +32,3 @@ let mask = IMask(valueInput, {
 mask.updateValue();
 
 
-

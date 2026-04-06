@@ -23,7 +23,19 @@ class TransactionsFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'description' => [
+                'required',
+                'string',
+                'min:3',
+            ]
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'description.required' => "É obrigatório informar uma descrição.",
+            'description.min' => "A descrição deve ter no mínimo 3 caracteres."
         ];
     }
 }

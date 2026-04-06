@@ -9,6 +9,8 @@ class Period extends QueryFilter implements FilterContract
 {
     public function handle($value): void
     {
-        $this->query->whereYear('date', $value[0])->whereMonth('date', $value[1]);
+        $explodedDate = explode("-", $value);
+
+        $this->query->whereYear('date', $explodedDate[0])->whereMonth('date', $explodedDate[1])->get()->all();
     }
 }

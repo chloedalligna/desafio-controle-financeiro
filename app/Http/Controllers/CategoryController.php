@@ -2,64 +2,81 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryFormRequest;
 use App\Models\Category;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
+        $msg = $request->session()->get('msg');
 
-        return view('categories.index')->with('categories', $categories);
+        return view('categories.index', [
+            'categories' => $categories,
+            'msg' => $msg,
+        ]);
     }
 
     public function create()
     {
-        return view('categories.create');
+        $types = Type::all();
+
+        return view('categories.create', [
+            'types' => $types,
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(CategoryFormRequest $request)
     {
-        Category::create($request->all);
+        $request->merge(['user_id' => session('user_id')]);
+        Category::create($request->except('_token'));
+
+        $request->session()->flash('msg', 'Categoria criada com sucesso.');
 
         return redirect()->route('categories.index');
     }
 
-    public function show($id)
+//    vv
+
+    public function edit(int $id, Request $request)
     {
         $category = Category::find($id);
+        $types = Type::all();
 
-        return view('categories.show')->with('categories', $category);
-    }
-
-    public function edit($id)
-    {
-        $category = Category::find($id);
-
-        if ($category) {
-            return redirect()->route('categories.index')->with('msg', 'Categoria não encontrada.');
+        if (!$category) {
+            $request->session()->flash('msg', 'Categoria não encontrada.');
+            return redirect()->route('categories.index');
         }
 
-        return view('categories.edit')->with('categories', $category);
+        return view('categories.edit', [
+            'category' => $category,
+            'types' => $types
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryFormRequest $request, $id)
     {
         $category = Category::find($id);
 
-        $category->update($request->all());
+        $category->update($request->except('_token'));
 
-        return redirect()->route('categories.index')->with('msg', 'Categoria atualizada com sucesso.');
+        $request->session()->flash('msg', 'Categoria atualizada com sucesso.');
+
+        return redirect()->route('categories.index');
     }
 
-    public function destroy($id)
+    public function destroy(int $id, CategoryFormRequest $request)
     {
         $category = Category::find($id);
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('msg', 'Categoria deletada com sucesso.');
+        $request->session()->flash('msg', 'Categoria deletada com sucesso.');
+
+        return redirect()->route('categories.index');
     }
 
 }

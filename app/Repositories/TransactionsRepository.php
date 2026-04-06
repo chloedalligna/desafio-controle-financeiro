@@ -6,26 +6,35 @@ use App\Models\Transaction;
 
 class TransactionsRepository
 {
-    public function incomesSum()
+    public function incomesSum($transactions)
     {
-        $transactions = Transaction::whereHas('category', function ($q) {
-            $q->where('type_id', 2);
-        });
+        $incomes = 0.00;
 
-        return $transactions->sum('value');
+        foreach ($transactions as $transaction) {
+            if ($transaction->category->type_id === 2) {
+                $incomes += $transaction->value;
+            }
+        }
 
+        return $incomes;
     }
 
-    public function expensesSum()
+    public function expensesSum($transactions)
     {
-        return Transaction::whereHas('category', function ($q) {
-            $q->where('type_id', 1);
-        })->sum('value');
+        $expenses = 0.00;
+
+        foreach ($transactions as $transaction) {
+            if ($transaction->category->type_id === 1) {
+                $expenses += $transaction->value;
+            }
+        }
+
+        return $expenses;
     }
 
-    public function totalSum()
+    public function totalSum($transactions)
     {
-        return self::incomesSum() - self::expensesSum();
+        return self::incomesSum($transactions) - self::expensesSum($transactions);
     }
 
     public function rangeTime()
@@ -41,11 +50,6 @@ class TransactionsRepository
         }
 
         return $explodedDates;
-
-    }
-
-    public function transactionsByCategory()
-    {
 
     }
 

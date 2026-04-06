@@ -1,11 +1,9 @@
-<x-layout title="Adicione uma nova transação">
+<x-layout title="Suas categorias">
 
-    <x-transactions.form
-        :action="route('transactions.store')"
-        :update="false"
-        :types="$types"
-        :categories="$categories"
-        :transaction="null"
+    <x-categories.table :collection="$categories"
+                          :keys="['Tipo', 'Nome', 'Última atualização']"
+                          edit="categories.edit"
+                          action="categories.destroy"
     />
 
 </x-layout>

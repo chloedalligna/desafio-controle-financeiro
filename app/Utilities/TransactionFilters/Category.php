@@ -9,6 +9,6 @@ class Category extends QueryFilter implements FilterContract
 {
     public function handle($value): void
     {
-        $this->query->where('category_id', $value->id);
+        $this->query->where('category_id', $value)->get()->all();
     }
 }

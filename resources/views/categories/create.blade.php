@@ -1,3 +1,10 @@
-<div>
-    <!-- If you do not have a consistent goal in life, you can not live it in a consistent way. - Marcus Aurelius -->
-</div>
+<x-layout title="Adicione uma nova categoria">
+
+    <x-categories.form
+        :action="route('categories.store')"
+        :update="false"
+        :types="$types"
+        :categories="null"
+    />
+
+</x-layout>

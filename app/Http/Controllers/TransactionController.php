@@ -17,23 +17,27 @@ class TransactionController extends Controller
        $this->transactionsRepository = $transactionsRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $dates = $this->transactionsRepository->rangeTime();
         $types = Type::all();
         $categories = Category::all();
 
-        $total = $this->transactionsRepository->totalSum();
-        $incomes = $this->transactionsRepository->incomesSum();
-        $expenses = $this->transactionsRepository->expensesSum();
+        $transactions = Transaction::filterBy(request()->all())->get();
+        $transactionsOrder = $transactions->sortBy('date');
 
-        $transactions = Transaction::orderBy('date', 'asc')->get()->all();
+        $total = $this->transactionsRepository->totalSum($transactions);
+        $incomes = $this->transactionsRepository->incomesSum($transactions);
+        $expenses = $this->transactionsRepository->expensesSum($transactions);
+
+        $msg = $request->session()->get('msg');
 
         return view('transactions.index', [
+            'msg' => $msg,
             'dates' => $dates,
             'types' => $types,
             'categories' => $categories,
-            'transactions' => $transactions,
+            'transactions' => $transactionsOrder,
             'total' => $total,
             'incomes' => $incomes,
             'expenses' => $expenses
@@ -59,6 +63,9 @@ class TransactionController extends Controller
 
         Transaction::create($request->except('_token'));
 
+        $request->session()->flash('msg', 'Transação criada com sucesso.');
+
+
         return to_route('transactions.index');
     }
 
@@ -71,14 +78,15 @@ class TransactionController extends Controller
 //        ]);
 //    }
 
-    public function edit(int $id)
+    public function edit(int $id, Request $request)
     {
         $transaction = Transaction::find($id);
         $types = Type::all();
         $categories = Category::all();
 
         if (!$transaction) {
-            return to_route('transactions.index')->with('msg', 'Transação não encontrada.');
+            $request->session()->flash('msg', 'Transação não encontrada.');
+            return to_route('transactions.index');
         }
 
         return view('transactions.edit', [
@@ -97,16 +105,20 @@ class TransactionController extends Controller
 
         $transaction->update($request->except('_token'));
 
-        return to_route('transactions.index')->with('msg', 'Transação atualizada com sucesso.');
+        $request->session()->flash('msg', 'Transação atualizada com sucesso.');
+
+        return to_route('transactions.index');
     }
 
-    public function destroy(int $id)
+    public function destroy(int $id, TransactionsFormRequest $request)
     {
         $transaction = Transaction::find($id);
 
         $transaction->delete();
 
-        return to_route('transactions.index')->with('msg', 'Transação deletada com sucesso.');
+        $request->session()->flash('msg', 'Transação deletada com sucesso.');
+
+        return to_route('transactions.index');
     }
 
     public function cleanMoneyValue(string $value): float

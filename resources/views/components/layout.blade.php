@@ -12,8 +12,8 @@
 <x-header/>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
+    <div class="absolute w-fit top-[15%] left-[2.5%]" role="alert">
+        <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
@@ -21,7 +21,13 @@
     </div>
 @endif
 
-<h1 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">{{ $title }}</h1>
+@isset($msg)
+    <div class="fixed top-[10%] left-[20%] p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+        {{ $msg }}
+    </div>
+@endisset
+
+<h1 class="mt-5 text-center text-2xl/9 font-bold tracking-tight text-white">{{ $title }}</h1>
 
 {{ $slot }}
 

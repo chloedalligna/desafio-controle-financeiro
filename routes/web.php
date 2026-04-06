@@ -36,7 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return to_route('transactions.index');
     });
-
+    
     Route::resource('/transactions', TransactionController::class)
         ->except('show');
 

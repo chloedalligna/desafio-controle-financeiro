@@ -27,9 +27,8 @@ class FilterBuilder
 
             if (strlen($value)) {
                 (new $class($this->query))->handle($value);
-            } else {
-                (new $class($this->query))->handle();
             }
+
         }
 
         return $this->query;

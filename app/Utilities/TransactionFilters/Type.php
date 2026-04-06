@@ -10,6 +10,8 @@ class Type extends QueryFilter implements FilterContract
 {
     public function handle($value): void
     {
-        $this->query->whereYear('type_id', $value->category->type_id);
+        $this->query->whereHas('category', function ($q) use ($value) {
+            $q->where('type_id', $value);
+        });
     }
 }

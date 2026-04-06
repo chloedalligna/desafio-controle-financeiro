@@ -58,13 +58,18 @@
                                 </button>
                             </a>
 
-                            <form action="{{ route($action, $attributes->id) }}" method="POST" class="w-fit justify-center ml-3">
+                            <form id="destroy" action="{{ route($action, $attributes->id) }}" method="POST" class="w-fit justify-center ml-3">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-transparent flex items-center rounded-lg px-4 py-2 text-sm hover:bg-red-500" role="menuitem">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 384 512" class="size-5"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z"/></svg>
-                                </button>
                             </form>
+                            <button id="destroy-button"
+                                    onclick="return confirm('Você deseja excluir esta transação permanentemente?');"
+                                    type="submit"
+                                    form="destroy"
+                                    class="bg-transparent flex items-center rounded-lg px-4 py-2 text-sm hover:bg-red-500" role="menuitem"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 384 512" class="size-5"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192.5 301.3 329.9 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256 375.1 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7 55.1 73.4z"/></svg>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -74,3 +79,11 @@
     </div>
 
 </div>
+
+<script>
+    // let destroyButton = document.getElementById('destroy-button');
+    //
+    // destroyButton.addEventListener('click', (e) => {
+    //     confirm("Você deseja excluir esta transação permanentemente?");
+    // })
+</script>

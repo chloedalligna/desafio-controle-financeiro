@@ -24,6 +24,8 @@ https://laravel.com/docs/9.x/validation#rule-confirmed
 https://api.laravel.com/docs/12.x/Illuminate/Auth/Middleware/Authenticate.html
 https://medium.com/@maitrikt1998/mastering-gates-and-policies-in-laravel-a-beginners-guide-bbaeba545579
 stackoverflow.com/questions/38412091/get-only-specific-attributes-with-from-laravel-collection
+https://stackoverflow.com/questions/38412091/get-only-specific-attributes-with-from-laravel-collection
+https://www.twilio.com/en-us/blog/developers/community/what-are-laravel-policies-and-how-to-use-them-to-control-access
 
 Views (inputs, components, etc.):
 https://stackoverflow.com/questions/45268471/getting-selected-option-on-edit-form-in-laravel
@@ -40,6 +42,8 @@ https://stackoverflow.com/questions/8605516/set-the-select-option-as-blank-as-de
 https://www.w3schools.com/howto/howto_js_toggle_password.asp
 https://technology.blog.gov.uk/2021/04/19/simple-things-are-complicated-making-a-show-password-option/
 https://stackoverflow.com/questions/12333739/laravel-back-button
+https://getbutterfly.com/enhancing-select-dropdowns-removing-duplicates-and-sorting-options-with-vanilla-javascript/
+https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/delete
 
 Filtros:
 https://dev.to/stefant123/create-filters-in-laravel-with-oop-best-practices-pm9
