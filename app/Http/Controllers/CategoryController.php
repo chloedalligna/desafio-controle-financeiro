@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('msg', 'Categoria criada com sucesso.');
 
-        return redirect()->route('categories.index');
+        return to_route('categories.index');
     }
 
 //    vv
@@ -48,7 +48,7 @@ class CategoryController extends Controller
 
         if (!$category) {
             $request->session()->flash('msg', 'Categoria não encontrada.');
-            return redirect()->route('categories.index');
+            return to_route('categories.index');
         }
 
         return view('categories.edit', [
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('msg', 'Categoria atualizada com sucesso.');
 
-        return redirect()->route('categories.index');
+        return to_route('categories.index');
     }
 
     public function destroy(int $id, CategoryFormRequest $request)
@@ -76,7 +76,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('msg', 'Categoria deletada com sucesso.');
 
-        return redirect()->route('categories.index');
+        return to_route('categories.index');
     }
 
 }

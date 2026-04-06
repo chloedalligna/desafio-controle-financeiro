@@ -36,12 +36,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return to_route('transactions.index');
     });
-    
+
     Route::resource('/transactions', TransactionController::class)
         ->except('show');
 
     Route::resource('/categories', CategoryController::class)
         ->except('show');
+
+    Route::get('/users/{id}/show', [UserController::class, 'show'])->name('users.show');
+
+    Route::get('/users/{id}/premium/subscription', [UserController::class, 'subscription'])->name('subscription');
+
+    Route::get('/users/{id}/premium/subscription/cancel', [UserController::class, 'cancelSubscription'])->name('subscription.cancel');
+
+    Route::get('/users/premium/payment', [UserController::class, 'payment'])->name('payment');
+
+    Route::get('/users/{id}/premium', [UserController::class, 'premium'])->name('premium');
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });

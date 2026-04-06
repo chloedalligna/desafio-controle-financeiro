@@ -1,4 +1,4 @@
-<div class="mt-6 w-full flex justify-center">
+<div class="mt-6 w-full flex justify-center mb-10">
 
     <div
         class="flex justify-center flex-col w-7x1 h-full overflow-scroll text-gray-700 bg-white dark:bg-gray-800 dark:text-white rounded-xl bg-clip-border"

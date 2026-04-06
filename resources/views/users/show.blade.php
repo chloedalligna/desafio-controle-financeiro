@@ -1,28 +1,40 @@
-<x-layout2 title="Seu perfil">
+<x-layout title="Seu perfil">
 
-    {{--    // Source - https://stackoverflow.com/a/17031201--}}
-    {{--    // Posted by Josh Griggs--}}
-    {{--    // Retrieved 2026-04-05, License - CC BY-SA 3.0--}}
-
-    <h1 class="mt-10 text-center text-lg font-semibold tracking-tight text-white">
-        Olá, {{ $username }}!
+    <h1 class="mt-10 text-center flex justify-center gap-3 text-2xl font-semibold tracking-tight text-white">
+        <span>
+             Olá, {{ $user->username }}!
+        </span>
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-7" fill="currentColor" viewBox="0 0 448 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M192 0c17.7 0 32 14.3 32 32l0 208-64 0 0-208c0-17.7 14.3-32 32-32zm96 160c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32zm64 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 64c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-64zM61.3 51.2L143.9 240 74.1 240 2.7 76.8C-4.4 60.6 3 41.8 19.2 34.7S54.2 35 61.3 51.2zm27 221.3l-.2-.5 95.9 0c22.1 0 40 17.9 40 40s-17.9 40-40 40l-56 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l56 0c39.8 0 72-32.2 72-72l0-.6c9.4 5.4 20.3 8.6 32 8.6 13.2 0 25.4-4 35.6-10.8 8.7 24.9 32.5 42.8 60.4 42.8 11.7 0 22.6-3.1 32-8.6l0 8.6c0 88.4-71.6 160-160 160l-61.7 0c-42.4 0-83.1-16.9-113.1-46.9L69.5 453.5C45.5 429.5 32 396.9 32 363l0-27c0-32.7 24.6-59.7 56.3-63.5z"/></svg>
+        </span>
     </h1>
 
-    <div class="">
-    @if (!$user->is_premium)
-        <h2>Assine já o Plano Premium! Clique no botão abaixo para saber mais.</h2>
+    <div class="mt-10 text-center text-lg font-semibold tracking-tight text-white">
+    @if ($user->is_premium === 0)
+        <h2>
+            Assine já o Plano Premium!<br>
+            Clique no botão abaixo para saber mais.
+        </h2>
         <div class="col-span-full mt-6 flex items-center justify-center gap-x-6">
-            <form action="{{ route('subscription') }}" method="post" class="max-w-sm mx-auto">
-                <button type="submit" class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                    <strong>Saiba mais sobre o Plano Premium</strong>
+            <form action="{{ route('subscription', session('user_id')) }}" method="post" class="max-w-sm mx-auto">
+                <button type="submit" class="rounded-md bg-teal-600 px-3 py-2 text-lg font-semibold text-white hover:bg-teal-500">
+                    Saiba mais sobre o Plano Premium
                 </button>
             </form>
         </div>
     @else
-        <h2>Você já é um cliente Premium!</h2>
+        <h2>
+            Você já é um cliente Premium!<br>
+            Parabéns pela escolha!
+        </h2>
+        <div class="col-span-full mt-6 flex items-center justify-center gap-x-6">
+            <a href="{{ route('subscription', session('user_id')) }}" class="max-w-sm mx-auto">
+                <button type="submit" class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-600">
+                    Para cancelar seu Plano Premium clique aqui
+                </button>
+            </a>
+        </div>
     @endif
     </div>
 
-
-
-</x-layout2>
+</x-layout>

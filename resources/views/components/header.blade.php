@@ -31,7 +31,7 @@
                         @else
                             <div class="hidden sm:flex">
                                 <a class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 dark:text-white dark:hover:text-white/75"
-                                   href="{{ route('signup') }}">
+                                   href="">
                                     Criar conta
                                 </a>
                             </div>
@@ -56,14 +56,14 @@
                             <div class="p-2" >
                                 <div class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm/6">
                                     <div class="flex-auto">
-                                        <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
+                                        <a href="{{ route('users.show', session('user_id')) }}" class="block rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
                                             Meu perfil
                                         </a>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-2 rounded-lg px-4 py-2 text-sm/6">
                                     <div class="flex-auto">
-                                        <a href="#" class="block rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
+                                        <a href="{{ route('subscription', session('user_id')) }}" class="block rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-50 hover:text-gray-700" role="menuitem">
                                             Plano Premium
                                         </a>
                                     </div>
