@@ -1,50 +1,65 @@
 # Projeto Laravel: desafio-controle-financeiro
+
+-----
+
 Desafio: Sistema de Controle de Despesas Pessoais com PHP e MySQL, para candidatar-se à vaga de Trainee na Impacta Web Soluções.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este projeto foi desenvolvido por Chloe Sophia Golubiewski Dall'Igna, aluna do curso e projeto social Codifica+ promovido pelo IDCAP e pela Impacta Web Soluções.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-----
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Como rodar o projeto
 
-## Learning Laravel
+Este projeto deve ser hospedado localmente.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+Para iniciar este projeto em seu dispositivo você deve:
+- Como o banco de dados utilizado é baseado em MySQL e não fiz nenhuma migration para a sua criação, a criação da schema devendo ser feita manualmente com o nome _**"desafio_controle_financeiro"**_.
+- Dar os comandos:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php artisan migrate
+php artisan db:seed    
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Esses comandos vão criar as tabelas e inserir os tipos de transação disponíveis por padrão — despesa e receita.
 
-## Contributing
+Para finalmente rodar o projeto, basta rodar estes dois comandos:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+php artisan serve
+```
 
-## Code of Conduct
+```php
+npm run dev
+```
+É possível criar uma conta, com transações e categorias próprias, que não são acessíveis para os demais usuários.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Os filtros são funcionais e de acordo com as categorias e datas adicionadas pelo próprio usuário.
 
-## Security Vulnerabilities
+Os somatórios exibidos no dashboard são filtráveis e exibidos de acordo com os filtros selecionados.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-----
 
-## License
+### Funcionalidades secundárias
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Verificação de e-mail
+
+É possível habilitar a verificação da conta por e-mail, que impede o acesso ao dashboard e é acionada somente após o registro do usuário.
+As rotas que possibilitam esta funcionalidade estão comentadas no arquivo "routes/web.php", bastando descomentá-las e também descomentar a primeira linha e comentar a segunda linha:
+
+```php
+//Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth',])->group(function () {
+```
+Porém, o endereço de e-mail cadastrado no registro da conta deve ser acessível pelo dispositivo hospedando localmente, pois o link e o botão recebidos via e-mail só funcionam se integir com eles no dispositivo com o servidor local.
+
+#### Plano Premium
+
+Existe a coluna de "is_premium" para cada usuário, porém não há nenhuma funcionalidade real que ela restringe.
+
+Existem botões que levam à telas para "realizar a assinatura" do Plano Premium e na tela de perfil do usuário mostra se o usuário logado é Premium, além de mostrar o username escolhido no momento de registro da conta.
+
+Iniciei a criação de Gates e estava pesquisando sobre Policies para restringir alguma coisa (os filtros ou os somatórios) ao Plano Premium, porém não dei continuidade por falta de tempo hábil e de entendimento do assunto.
+
+-----
+
+## Finalizado, obrigada pela atenção!

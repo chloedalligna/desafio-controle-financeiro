@@ -3,9 +3,41 @@
 namespace App\Repositories;
 
 use App\Models\Transaction;
+use App\Models\Type;
+use Illuminate\Http\Request;
 
 class TransactionsRepository
 {
+    public function read(Request $request): array
+    {
+        $dates = $this->rangeTime();
+        $types = Type::all();
+        $categories = auth()->user()->categories()->get()->all();
+
+        $transactions = auth()->user()->transactions()->filterBy(request()->all())->get();
+        $transactionsOrder = $transactions->sortBy('date');
+
+        $total = $this->totalSum($transactions);
+        $incomes = $this->incomesSum($transactions);
+        $expenses = $this->expensesSum($transactions);
+
+        $msg = $request->session()->get('msg');
+
+        $query = $request->getQueryString();
+
+        return [
+            'query' => $query,
+            'msg' => $msg,
+            'dates' => $dates,
+            'types' => $types,
+            'categories' => $categories,
+            'transactions' => $transactionsOrder,
+            'total' => $total,
+            'incomes' => $incomes,
+            'expenses' => $expenses
+        ];
+    }
+
     public function incomesSum($transactions)
     {
         $incomes = 0.00;
@@ -39,14 +71,18 @@ class TransactionsRepository
 
     public function rangeTime()
     {
-        $transactions = Transaction::all();
+        $transactions = auth()->user()->transactions()->get()->all();
 
-        $dates = $transactions->map->only(['date']);
+        $dates = [];
+
+        foreach ($transactions as $transaction) {
+            $dates[] = $transaction->attributesToArray()['date'];
+        }
 
         $explodedDates = [];
 
         foreach ($dates as $oneDate) {
-            $explodedDates[] = explode("-", $oneDate['date']);
+            $explodedDates[] = explode("-", $oneDate);
         }
 
         return $explodedDates;

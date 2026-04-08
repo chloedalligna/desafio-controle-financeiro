@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function show(int $id, Request $request)
     {
-        $user = User::find($id);
+        $user = auth()->user();
         $msg = $request->session()->get('msg');
 
         return view('users.show', [
@@ -107,7 +107,7 @@ class UserController extends Controller
 
     public function subscription(int $id)
     {
-        $user = User::find($id);
+        $user = auth()->user();
 
         return view('premium.subscription', [
             'user' => $user,
@@ -116,7 +116,7 @@ class UserController extends Controller
 
     public function cancelSubscription(Request $request, int $id)
     {
-        $user = User::find($id);
+        $user = auth()->user();
         $user->is_premium = false;
         $user->save();
 
@@ -135,7 +135,7 @@ class UserController extends Controller
 
     public function premium(Request $request, int $id)
     {
-        $user = User::find($id);
+        $user = auth()->user();
         $user->is_premium = true;
         $user->save();
 

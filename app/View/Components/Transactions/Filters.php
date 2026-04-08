@@ -11,13 +11,13 @@ class Filters extends Component
 {
 
     public array $dates = [];
-    public Collection $types;
-    public Collection $categories;
+    public Collection|array $types;
+    public Collection|array $categories;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($dates, Collection $types, Collection $categories)
+    public function __construct($dates, Collection|array $types, Collection|array $categories)
     {
         $this->dates = $dates;
         $this->types = $types;

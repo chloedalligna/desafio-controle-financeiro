@@ -10,6 +10,13 @@ https://www.material-tailwind.com/docs/html/table
 https://flowbite.com/blocks/e-commerce/product-categories/
 https://tailwindcss.com/docs/grid-column
 
+Permissões e roles:
+https://youtu.be/kZOgH3-0Bko?si=NUyu7v2rhSATfraO
+https://medium.com/@zulfikarditya/mastering-laravel-policies-a-complete-guide-to-authorization-in-laravel-991bbdcc6756
+https://www.twilio.com/en-us/blog/developers/community/what-are-laravel-policies-and-how-to-use-them-to-control-access
+https://medium.com/@maitrikt1998/mastering-gates-and-policies-in-laravel-a-beginners-guide-bbaeba545579
+https://api.laravel.com/docs/12.x/Illuminate/Auth/Middleware/Authenticate.html
+
 Models, database, controllers, etc. (back-end):
 https://medium.com/@emad-mohamed/softdelete-on-laravel-a8545ec87253
 https://laravel.com/docs/13.x/validation
@@ -21,11 +28,9 @@ https://allxone.vn/email-verification-with-laravel/
 https://laravel.com/docs/13.x/verification
 https://laravel.com/docs/13.x/session
 https://laravel.com/docs/9.x/validation#rule-confirmed
-https://api.laravel.com/docs/12.x/Illuminate/Auth/Middleware/Authenticate.html
-https://medium.com/@maitrikt1998/mastering-gates-and-policies-in-laravel-a-beginners-guide-bbaeba545579
 stackoverflow.com/questions/38412091/get-only-specific-attributes-with-from-laravel-collection
 https://stackoverflow.com/questions/38412091/get-only-specific-attributes-with-from-laravel-collection
-https://www.twilio.com/en-us/blog/developers/community/what-are-laravel-policies-and-how-to-use-them-to-control-access
+https://laravel.com/docs/13.x/seeding
 
 Views (inputs, components, etc.):
 https://stackoverflow.com/questions/45268471/getting-selected-option-on-edit-form-in-laravel

@@ -29,6 +29,8 @@ class LoginController extends Controller
         $request->authenticate();
         $this->usersRepository->userIdOnSession($request);
 
+        $request->session()->flash('msg', 'Usuário logado com sucesso!');
+
         return to_route('transactions.index');
     }
 

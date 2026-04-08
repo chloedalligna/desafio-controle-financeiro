@@ -31,7 +31,7 @@
                         @else
                             <div class="hidden sm:flex">
                                 <a class="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500 dark:text-white dark:hover:text-white/75"
-                                   href="">
+                                   href="{{ route('signup') }}">
                                     Criar conta
                                 </a>
                             </div>

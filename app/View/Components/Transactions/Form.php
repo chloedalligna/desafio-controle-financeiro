@@ -20,7 +20,7 @@ class Form extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $action, bool $update, Collection|array $types, Collection|array $categories, $transaction)
+    public function __construct(string $action, bool $update, Collection|array $types, Collection|array $categories, $transaction = null)
     {
         $this->action = $action;
         $this->update = $update;
