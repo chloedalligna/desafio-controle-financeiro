@@ -22,11 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use SoftDeletes, HasFactory, Notifiable;
 
     /**
-     * @var \Illuminate\Support\HigherOrderCollectionProxy|mixed
-     */
-    public bool $is_premium;
-
-    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -47,11 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
-    }
-
-    public function types(): BelongsTo
-    {
-        return $this->hasMany(Type::class);
     }
 
 }

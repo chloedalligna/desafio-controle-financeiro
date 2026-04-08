@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -31,6 +30,11 @@ class AuthServiceProvider extends ServiceProvider
                 ->action('Verifique seu e-mail', $url)
                 ->line('Se você não criou uma conta, ignore este e-mail.');
         });
+
+        Gate::define('categories-view', fn(User $user) => $user->is_premium);
+        Gate::define('categories-create', fn(User $user) => $user->is_premium);
+        Gate::define('categories-edit', fn(User $user) => $user->is_premium);
+        Gate::define('categories-delete', fn(User $user) => $user->is_premium);
 
 //        Gate::define('premium', function (User|Collection $user) {
 //            return $user->is_premium;

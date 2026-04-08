@@ -21,7 +21,7 @@
                             <option value="{{ $type->id }}"
                             @if($update)
                                 {{ $transaction->category->type_id === $type->id ? 'selected' : '' }}
-                                @endif >
+                            @endif >
                                 {{ $type->name }}
                             </option>
                         @endforeach
@@ -118,22 +118,51 @@
 
 </div>
 
-<script src="/simple-mask-money.umd.js"></script>
+<script src="https://unpkg.com/imask"></script>
 <script>
 
-let typeSelect = document.getElementById('type_id');// let typeOptions = typeDropdown.options;
-// console.log(typeOptions);
-
+let valueInput = document.getElementById('value');
+let typeSelect = document.getElementById('type_id');
 let categorySelect = document.getElementById('category_id');
 let categoryOptions = categorySelect.options;
-// console.log(categoryOptions);
+
+let mask = IMask(valueInput, {
+    mask: [
+        { mask: '' },
+        {
+            mask: 'R$ num',
+            lazy: false,
+            blocks: {
+                num: {
+                    mask: Number,  // enable number mask
+                    // other options are optional with defaults below
+                    scale: 2,  // digits after point, 0 for integers
+                    thousandsSeparator: '.',  // any single char
+                    padFractionalZeros: true,  // if true, then pads zeros at end to the length of scale
+                    normalizeZeros: false,  // appends or removes zeros at ends
+                    radix: ',',  // fractional delimiter
+                    mapToRadix: '.',  // symbols to process as radix
+                    // additional number interval options (e.g.)
+                    signed: false,
+                    min: 0.01,
+                    autofix: true,
+                }
+            }
+        },
+    ]
+});
+
+mask.updateValue();
+
 
 typeSelect.addEventListener('change', (event) => {
     let type = event.target.value;
     categorySelect.value = '';
+    console.log(type);
 
     for (let i = 0; i < categoryOptions.length; i++) {
         let category = categoryOptions[i];
+        console.log(category);
         category.disabled = true;
 
         if (category.value !== '') {

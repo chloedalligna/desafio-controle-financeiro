@@ -22,7 +22,7 @@
 @endif
 
 @isset($msg)
-    <div class="fixed top-[10%] left-[20%] p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert">
+    <div class="absolute top-[15%] left-[2.5%] bg-green-100 border border-green-400 px-4 py-3 rounded" role="alert">
         {{ $msg }}
     </div>
 @endisset

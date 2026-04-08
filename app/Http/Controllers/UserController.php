@@ -56,12 +56,16 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-//    public function show(string $id)
-//    {
-//        $user = User::find($id);
-//
-//        return view('users.show')->with('users', $user);
-//    }
+    public function show(int $id, Request $request)
+    {
+        $user = auth()->user();
+        $msg = $request->session()->get('msg');
+
+        return view('users.show', [
+            'user' => $user,
+            'msg' => $msg,
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,7 +75,7 @@ class UserController extends Controller
 //        $user = User::find($id);
 //
 //        if ($user) {
-//            return redirect()->route('users.index')->with('msg', 'Usuário não encontrado.');
+//            return to_route('users.index')->with('msg', 'Usuário não encontrado.');
 //        }
 //
 //        return view('users.edit')->with('users', $user);
@@ -86,7 +90,7 @@ class UserController extends Controller
 //
 //        $user->update($request->all());
 //
-//        return redirect()->route('users.index')->with('msg', 'Usuário atualizado com sucesso.');
+//        return to_route('users.index')->with('msg', 'Usuário atualizado com sucesso.');
 //    }
 
     /**
@@ -98,6 +102,46 @@ class UserController extends Controller
 //
 //        $user->delete();
 //
-//        return redirect()->route('users.index')->with('msg', 'Usuário deletado com sucesso.');
+//        return to_route('users.index')->with('msg', 'Usuário deletado com sucesso.');
 //    }
+
+    public function subscription(int $id)
+    {
+        $user = auth()->user();
+
+        return view('premium.subscription', [
+            'user' => $user,
+        ]);
+    }
+
+    public function cancelSubscription(Request $request, int $id)
+    {
+        $user = auth()->user();
+        $user->is_premium = false;
+        $user->save();
+
+        $request->session()->flash('msg', 'Assinatura do Plano Premium desativada com sucesso.');
+
+        return to_route('users.show', [
+            'user' => $user,
+            'id' => $user->id,
+        ]);
+    }
+
+    public function payment()
+    {
+        return view('premium.payment');
+    }
+
+    public function premium(Request $request, int $id)
+    {
+        $user = auth()->user();
+        $user->is_premium = true;
+        $user->save();
+
+        $request->session()->flash('msg', 'Assinatura do Plano Premium ativada com sucesso!');
+
+        return to_route('users.show', session('user_id'));
+    }
+
 }

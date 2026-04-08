@@ -19,39 +19,19 @@ class TransactionController extends Controller
 
     public function index(Request $request)
     {
-        $dates = $this->transactionsRepository->rangeTime();
-        $types = Type::all();
-        $categories = Category::all();
+        $variables = $this->transactionsRepository->read($request);
 
-        $transactions = Transaction::filterBy(request()->all())->get();
-        $transactionsOrder = $transactions->sortBy('date');
-
-        $total = $this->transactionsRepository->totalSum($transactions);
-        $incomes = $this->transactionsRepository->incomesSum($transactions);
-        $expenses = $this->transactionsRepository->expensesSum($transactions);
-
-        $msg = $request->session()->get('msg');
-
-        return view('transactions.index', [
-            'msg' => $msg,
-            'dates' => $dates,
-            'types' => $types,
-            'categories' => $categories,
-            'transactions' => $transactionsOrder,
-            'total' => $total,
-            'incomes' => $incomes,
-            'expenses' => $expenses
-        ]);
+        return view('transactions.index', $variables);
     }
 
     public function create()
     {
         $types = Type::all();
-        $categories = Category::all();
+        $categories = auth()->user()->categories()->get()->all();
 
         return view('transactions.create', [
             'types' => $types,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -61,28 +41,19 @@ class TransactionController extends Controller
         $request->merge(['value' => $cleanValue]);
         $request->merge(['user_id' => session('user_id')]);
 
-        Transaction::create($request->except('_token'));
+        auth()->user()->transactions()->create($request->except('_token'));
 
         $request->session()->flash('msg', 'Transação criada com sucesso.');
-
 
         return to_route('transactions.index');
     }
 
-//    public function show(int $id)
-//    {
-//        $transaction = Transaction::find($id);
-//
-//        return view('transactions.show', [
-//            'transaction' => $transaction
-//        ]);
-//    }
-
     public function edit(int $id, Request $request)
     {
-        $transaction = Transaction::find($id);
+        $transaction = auth()->user()->transactions()->get()->find($id);
+//        dd($transaction);
         $types = Type::all();
-        $categories = Category::all();
+        $categories = auth()->user()->categories()->get()->all();
 
         if (!$transaction) {
             $request->session()->flash('msg', 'Transação não encontrada.');
@@ -98,7 +69,7 @@ class TransactionController extends Controller
 
     public function update(TransactionsFormRequest $request, int $id)
     {
-        $transaction = Transaction::find($id);
+        $transaction = auth()->user()->transactions()->get()->find($id);
 
         $cleanValue = self::cleanMoneyValue($request->input('value'));
         $request->merge(['value' => $cleanValue]);
@@ -110,9 +81,9 @@ class TransactionController extends Controller
         return to_route('transactions.index');
     }
 
-    public function destroy(int $id, TransactionsFormRequest $request)
+    public function destroy(int $id, Request $request)
     {
-        $transaction = Transaction::find($id);
+        $transaction = auth()->user()->transactions()->get()->find($id);
 
         $transaction->delete();
 

@@ -13,17 +13,15 @@ class Table extends Component
     public array $keys;
     public array $textColor = [ 1 => 'text-red-500', 2 => 'text-green-500' ];
     public string $edit;
-    public string $action;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(Collection|array $collection, array $keys, string $edit, string $action)
+    public function __construct(Collection|array $collection, array $keys, string $edit)
     {
         $this->collection = $collection;
         $this->keys = $keys;
         $this->edit = $edit;
-        $this->action = $action;
     }
 
     /**

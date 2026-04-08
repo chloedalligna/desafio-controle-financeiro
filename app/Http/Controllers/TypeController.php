@@ -35,7 +35,7 @@ class TypeController extends Controller
 //    {
 //        Type::create($request->all);
 //
-//        return redirect()->route('types.index');
+//        return to_route('types.index');
 //    }
 
     /**
@@ -56,7 +56,7 @@ class TypeController extends Controller
 //        $type = Type::find($id);
 //
 //        if ($type) {
-//            return redirect()->route('types.index')->with('msg', 'Tipo não encontrado.');
+//            return to_route('types.index')->with('msg', 'Tipo não encontrado.');
 //        }
 //
 //        return view('types.edit')->with('type', $type);
@@ -71,7 +71,7 @@ class TypeController extends Controller
 //
 //        $type->update($request->all());
 //
-//        return redirect()->route('types.index')->with('msg', 'Tipo atualizado com sucesso.');
+//        return to_route('types.index')->with('msg', 'Tipo atualizado com sucesso.');
 //    }
 
     /**
@@ -83,7 +83,7 @@ class TypeController extends Controller
 //
 //        $type->delete();
 //
-//        return redirect()->route('types.index')->with('msg', 'Tipo deletado com sucesso.');
+//        return to_route('types.index')->with('msg', 'Tipo deletado com sucesso.');
 //    }
 
 }
