@@ -14,7 +14,7 @@
                            name="email"
                            id="email"
                            type="email"
-                           required0
+                           required
                            autocomplete="email"
                            value="{{ old('email') }}" >
                 </div>

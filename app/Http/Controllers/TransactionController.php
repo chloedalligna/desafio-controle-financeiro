@@ -39,7 +39,7 @@ class TransactionController extends Controller
     {
         $cleanValue = self::cleanMoneyValue($request->input('value'));
         $request->merge(['value' => $cleanValue]);
-        $request->merge(['user_id' => session('user_id')]);
+        $request->merge(['user_id' => auth()->user()->attributesToArray()['id']]);
 
         auth()->user()->transactions()->create($request->except('_token'));
 

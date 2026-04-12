@@ -16,11 +16,9 @@
             Clique no botão abaixo para saber mais.
         </h2>
         <div class="col-span-full mt-6 flex items-center justify-center gap-x-6">
-            <form action="{{ route('subscription', session('user_id')) }}" method="post" class="max-w-sm mx-auto">
-                <button type="submit" class="rounded-md bg-teal-600 px-3 py-2 text-lg font-semibold text-white hover:bg-teal-500">
-                    Saiba mais sobre o Plano Premium
-                </button>
-            </form>
+            <a href="{{ route('subscription', auth()->user()->attributesToArray()['id']) }}" class="rounded-md bg-teal-600 px-3 py-2 text-lg font-semibold text-white hover:bg-teal-500">
+                Saiba mais sobre o Plano Premium
+            </a>
         </div>
     @else
         <h2>
@@ -28,7 +26,7 @@
             Parabéns pela escolha!
         </h2>
         <div class="col-span-full mt-6 flex items-center justify-center gap-x-6">
-            <a href="{{ route('subscription', session('user_id')) }}" class="max-w-sm mx-auto">
+            <a href="{{ route('subscription', auth()->user()->attributesToArray()['id']) }}" class="max-w-sm mx-auto">
                 <button type="submit" class="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-600">
                     Para cancelar seu Plano Premium clique aqui
                 </button>
