@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
     public function store(CategoryFormRequest $request)
     {
-        $request->merge(['user_id' => session('user_id')]);
+        $request->merge(['user_id' => auth()->user()->attributesToArray()['id']]);
         auth()->user()->categories()->create($request->except('_token'));
 
         $request->session()->flash('msg', 'Categoria criada com sucesso.');

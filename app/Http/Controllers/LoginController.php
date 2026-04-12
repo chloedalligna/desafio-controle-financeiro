@@ -7,8 +7,13 @@ use App\Repositories\UsersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
+use function Laravel\Prompts\table;
 use function Symfony\Component\String\s;
+
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
@@ -27,7 +32,8 @@ class LoginController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-        $this->usersRepository->userIdOnSession($request);
+//        $this->usersRepository->userIdOnSession($request);
+//        dd(session()->all());
 
         $request->session()->flash('msg', 'Usuário logado com sucesso!');
 
@@ -36,8 +42,16 @@ class LoginController extends Controller
 
     public function destroy(Request $request)
     {
-        session()->forget('user_id');
+        // Step 1: Log out the user
         Auth::logout();
+
+        // Step 2: Invalidate the session
+        $request->session()->invalidate();
+
+        // Step 3: Regenerate CSRF token
+        $request->session()->regenerateToken();
+
+        // FONTE: https://needlaravelsite.com/blog/laravel-auth-logout-explained
 
         return to_route('login');
     }

@@ -45,7 +45,7 @@ class UserController extends Controller
         $userData['password'] = Hash::make($userData['password']);
         $user = User::create($userData);
 
-        $this->usersRepository->userIdOnSession($request);
+//        $this->usersRepository->userIdOnSession($request);
 
         Auth::login($user);
         event(new Registered($user));
@@ -56,7 +56,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id, Request $request)
+    public function show(Request $request)
     {
         $user = auth()->user();
         $msg = $request->session()->get('msg');
@@ -141,7 +141,7 @@ class UserController extends Controller
 
         $request->session()->flash('msg', 'Assinatura do Plano Premium ativada com sucesso!');
 
-        return to_route('users.show', session('user_id'));
+        return to_route('users.show', auth()->user()->attributesToArray()['id']);
     }
 
 }
